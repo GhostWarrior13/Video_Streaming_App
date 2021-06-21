@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "328219022281",
+    "project_id": "video-streaming-app-bbab7",
+    "storage_bucket": "video-streaming-app-bbab7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328219022281:android:6f8a5f5352b3971d3dce18",
+        "android_client_info": {
+          "package_name": "com.example.movify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328219022281-p0nj1kp9fr006q4c9q2s8bhbjm32btro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movify",
+            "certificate_hash": "9a9dd6468c8d83ca4dce9df1dbe2557d4a70978d"
+          }
+        },
+        {
+          "client_id": "328219022281-rhjkqjqsm1pm3eguuunna7npo759bahl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxmkbly97iqGJfAMR6BQvKNR-7Ms6bVO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328219022281-rhjkqjqsm1pm3eguuunna7npo759bahl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
