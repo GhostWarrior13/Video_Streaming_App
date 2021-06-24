@@ -21,7 +21,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     private PlayerView videoPlayer;
     private SimpleExoPlayer simpleExoPlayer;
-    private static final String File_URL = "";
 
 
     @Override

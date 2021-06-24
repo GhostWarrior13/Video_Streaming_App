@@ -12,14 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,15 +22,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Registration_Activity extends AppCompatActivity {
 
-    private EditText Username,Email, Password,Password_Confirm;
+    private EditText Username,Email, Password;
     private TextView Already_A_Member;
-    private Button Register_BTN;
+    private Button Register_BTN, btn_Resend_Verify;
     private String name, email, password;
+    private TextView msg_confirm;
     FirebaseAuth mAuth;
 
     @Override
@@ -50,6 +43,9 @@ public class Registration_Activity extends AppCompatActivity {
         Email = findViewById(R.id.Email);
         Password = findViewById(R.id.Password);
         Register_BTN = findViewById(R.id.Register_BTN);
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
         name = email = password = "";
 
         name = Username.getText().toString().trim();
@@ -57,6 +53,7 @@ public class Registration_Activity extends AppCompatActivity {
         password = Password.getText().toString();
 
         Message_Success.setVisibility(View.INVISIBLE);
+
 
         Already_A_Member.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,16 +66,18 @@ public class Registration_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createUser();
-
             }
         });
+
     }
+
 
     public void DirectToLoginPage(){
         Intent intent = new Intent(this, Login_Activity.class);
         startActivity(intent);
         finish();
     }
+
 
     private void createUser(){
 
@@ -98,22 +97,42 @@ public class Registration_Activity extends AppCompatActivity {
         }else {
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
-                public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                public void onComplete(@NotNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        assert user != null;
+                        user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(Registration_Activity.this, "Email Verification Sent", Toast.LENGTH_SHORT).show();
+                                DirectToLoginPage();
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull @NotNull Exception e) {
+                                Toast.makeText(Registration_Activity.this, "Email could not be sent", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        if (user.isEmailVerified()){
                         Message_Success.setVisibility(View.VISIBLE);
+
                         Toast.makeText(Registration_Activity.this, "User Registered", Toast.LENGTH_SHORT).show();
                         DirectToLoginPage();
                     }else{
-                        Toast.makeText(Registration_Activity.this, "Registration Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                            Toast.makeText(Registration_Activity.this, "Email not verified", Toast.LENGTH_SHORT).show();
+                        }
                 }
-            });
+            }
+        });
+
         }
 
 
-        }
 
     }
+}
 
 
 
