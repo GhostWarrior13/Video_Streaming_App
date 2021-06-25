@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class Login_Activity extends AppCompatActivity {
 
-    TextView Not_a_Member;
+    TextView Not_a_Member, Forgot_Password;
     private EditText Email, Password;
     private String email, password;
     Button Login_BTN, btn_Resend_Verify;
@@ -37,6 +37,7 @@ public class Login_Activity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         Not_a_Member = findViewById(R.id.Not_a_Member);
+        Forgot_Password = findViewById(R.id.Forgot_Password);
         Login_BTN = findViewById(R.id.Login_BTN);
         email = password = "";
         Email = findViewById(R.id.Email);
@@ -49,6 +50,15 @@ public class Login_Activity extends AppCompatActivity {
 
         
         btn_Resend_Verify.setVisibility(View.INVISIBLE);
+
+        Forgot_Password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login_Activity.this, Forgot_Password_Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
 

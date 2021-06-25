@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
@@ -24,10 +25,13 @@ public class Adapter extends PagerAdapter {
     Context context;
     List<BannerMovies> bannerMoviesList;
 
+
     public Adapter(Context context, List<BannerMovies> bannerMoviesList) {
         this.context = context;
         this.bannerMoviesList = bannerMoviesList;
     }
+
+
 
     @Override
     public int getCount() {

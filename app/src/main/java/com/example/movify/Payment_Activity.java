@@ -118,9 +118,7 @@ public class Payment_Activity extends AppCompatActivity {
                 if (uriTask.isSuccessful()){
 
                     HashMap<String, Object> hashMap = new HashMap<>();
-                    hashMap.put("id", "" + timestamp);
                     hashMap.put("title", "" + Title);
-                    hashMap.put("timestamp", "" + timestamp);
                     hashMap.put("videoURI", "" + downloadURI);
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Videos");
@@ -129,7 +127,7 @@ public class Payment_Activity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     progressDialog.dismiss();
-                                    Toast.makeText(Payment_Activity.this,"Video uploaded", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Payment_Activity.this,"Request Sent", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override

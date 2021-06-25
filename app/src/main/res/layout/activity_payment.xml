@@ -9,7 +9,7 @@
 
     <VideoView
         android:id="@+id/videoView"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="32dp"
@@ -28,7 +28,7 @@
         android:layout_marginEnd="172dp"
         android:layout_marginRight="172dp"
         android:fontFamily="sans-serif-black"
-        android:text="Upload Video"
+        android:text="Request Video"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="25dp"
@@ -79,10 +79,25 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/register_btn_bg"
-        android:text="UPLOAD VIDEO"
+        android:text="REQUEST MY VIDEO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_pickVideo" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="Videos can take up to 72hrs for approval"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Upload" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
